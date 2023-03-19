@@ -1,6 +1,3 @@
-import sys
-
-
 class Edge:
     def __init__(self, start, read_letter, end, written_letter, direction):
         self.start = start
@@ -109,44 +106,43 @@ fork = Fork()
 
 word = ''
 words = []
-out = sys.stdout
 
-states = sys.stdin.readline()
+states = input()
 for s in states.rstrip():
     if s != ' ':
         fork.add_vertice(s)
 
-alphabet = sys.stdin.readline()
+alphabet = input()
 for a in alphabet:
     if a != ' ':
         alphabet = alphabet + a
 
-alphabet_tape = sys.stdin.readline()
+alphabet_tape = input()
 for a in alphabet_tape:
     if a != ' ':
         alphabet = alphabet_tape + a
 
-lim_left = sys.stdin.readline().rstrip()
-lim_right = sys.stdin.readline().rstrip()
-n_transitions = sys.stdin.readline().rstrip()
+lim_left = input().rstrip()
+lim_right = input().rstrip()
+n_transitions = input().rstrip()
 
 n = 0
 while n < int(n_transitions):
-    transitions = sys.stdin.readline()
+    transitions = input()
     if transitions.rstrip() != '':
         n = n + 1
         fork.add_edge(start_data=transitions[0], read_letter=transitions[2], end_data=transitions[4],
                       written_letter=transitions[6], direction=transitions[8])
 
-start_state = sys.stdin.readline()
+start_state = input()
 fork.setinitial(start_state.rstrip())
 
-final_states = sys.stdin.readline()
+final_states = input()
 for s in final_states.rstrip():
     if s != ' ':
         fork.setfinal(s)
 
-input_words = sys.stdin.readline()
+input_words = input()
 count = 0
 for p in input_words.rstrip():
     if p != ' ':
@@ -161,4 +157,4 @@ for p in input_words.rstrip():
         words.append(word)
 
 for w in words:
-    out.write(fork.is_recognized(w, lim_left, lim_right) + '\n')
+    print(fork.is_recognized(w, lim_left, lim_right))
